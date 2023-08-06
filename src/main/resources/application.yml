@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: first-app
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.spring.firstapp.config.CustomDeserializer
+      client-id: ${spring.application.name}
+      properties:
+        spring:
+          deserializer:
+            value:
+              delegate:
+                class: org.springframework.kafka.support.serializer.JsonDeserializer
+          json:
+            value:
+              default:
+                type: com.spring.firstapp.model.FirstAppEvent
+            type:
+              mapping: "com.spring.firstapp.model.FirstAppEvent"
+            trusted:
+              packages: "*"
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+messaging:
+  topic:
+    inbound: SharedKafka_FIRST-APP-EVENT-GENERATED

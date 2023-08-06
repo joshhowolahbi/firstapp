@@ -1,0 +1,21 @@
+{
+  "$id": "https://firstapp.com/first.app.event.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "First App Event",
+  "description": "event to test kafka setup",
+  "type": "object",
+  "properties": {
+    "header": {
+      "mainHead": {
+        "description": "main head description",
+        "type": "string"
+      }
+    },
+    "payload": {
+      "mainPayload": {
+        "description": "main payload description",
+        "type": "string"
+      }
+    }
+  }
+}
